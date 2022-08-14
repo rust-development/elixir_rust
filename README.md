@@ -1,21 +1,52 @@
-# ElixirRust
+# README about elixir rust NIF
 
-**TODO: Add description**
+1. create elixir project
+```sh
+mix new ex_rust
+```
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elixir_rust` to your list of dependencies in `mix.exs`:
-
+2. Add deps:
 ```elixir
-def deps do
+
+defp deps do
   [
-    {:elixir_rust, "~> 0.1.0"}
+    {:rustler, "~> 0.25.0"}
   ]
 end
 ```
+3. Update the deps
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/elixir_rust>.
+```sh
+mix dpes.get
+```
 
+4. Create rust lib
+
+mix rustler.new --module <MODULE> --name <NAME> --otp-app <OTP_APP>
+```sh
+mix rustler.new --module ExRust --name rustlib_add --otp-app ex_rust
+
+```
+
+5. Update the elixir module
+
+```elixir
+defmodule ExRust do
+  use Rustler,
+    otp_app: :ex_rust,
+    crate: :rustlib_add
+
+  def add(_arg1, _arg2), do: :erlang.nif_error(:nif_not_loaded)
+end
+
+```
+
+6. Start the application
+```sh
+iex -S mix
+```
+
+7. Then, start the application call the function
+```elixir
+ExRust.add 1, 2
+```
