@@ -24,3 +24,17 @@ elixir_rust-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Mac
+.DS_Store
+
+# Rust
+
+debug/
+target/
+
+Cargo.lock
+
+*.pdb
+
+**/*.rs.bk
