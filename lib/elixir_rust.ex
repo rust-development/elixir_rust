@@ -14,8 +14,10 @@ defmodule ElixirRust do
   """
   use Rustler,
     otp_app: :elixir_rust,
-    crate: :rustlib_add
+    crate: :rustlib_add,
+    crate: :rustlib_start
 
   def add(_arg1, _arg2), do: :erlang.nif_error(:nif_not_loaded)
+  def start(), do: :erlang.nif_error(:nif_not_loaded)
 
 end

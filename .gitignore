@@ -38,3 +38,5 @@ Cargo.lock
 *.pdb
 
 **/*.rs.bk
+
+priv/native/*.so
